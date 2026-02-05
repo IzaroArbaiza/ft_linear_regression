@@ -12,7 +12,19 @@ with open('data.csv', 'r') as file:
         mileages.append(float(row[0]))
         prices.append(float(row[1]))
 
-#Print de los datos leidos
-print("Datos leidos: ")
+theta0 = 0.0
+theta1 = 0.0
+
+def estimated_price(mileages, theta0, theta1):
+    return theta0 + (theta1 * mileages) 
+
+estimated_prices = estimated_price(mileages[0], theta0, theta1)
+real_prices = prices[0]
+
+error = estimated_prices - real_prices
+
+print("\nErrores para todos los coches: ")
 for i in range(len(mileages)):
-    print(f"Mileage: {mileages[i]}, Price: {prices[i]}")
+    estimated_prices = estimated_price(mileages[i], theta0, theta1)
+    error = estimated_prices - prices[i]
+    print(f"Error para el coche {i}: {error}")
